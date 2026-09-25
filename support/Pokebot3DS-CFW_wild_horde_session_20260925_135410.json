@@ -1,0 +1,216 @@
+{
+  "tool": "Pokebot3DS-CFW v0p43EI Wild Run Bridge Recovery + Field Reacquire",
+  "status": "SAFETY_HOLD",
+  "reason": "causal Run failed: battle stayed active through 48 bounded Run taps",
+  "game": "Omega Ruby",
+  "target_selection": null,
+  "look_for_target": {
+    "enabled": false,
+    "species": [],
+    "nature": "Any",
+    "shiny": "Any",
+    "gender": "Any",
+    "hidden_power_type": "Any",
+    "hidden_power_power": 60,
+    "ivs": {
+      "hp": {
+        "min": 0,
+        "max": 31
+      },
+      "attack": {
+        "min": 0,
+        "max": 31
+      },
+      "defense": {
+        "min": 0,
+        "max": 31
+      },
+      "sp_attack": {
+        "min": 0,
+        "max": 31
+      },
+      "sp_defense": {
+        "min": 0,
+        "max": 31
+      },
+      "speed": {
+        "min": 0,
+        "max": 31
+      }
+    }
+  },
+  "auto_throw_one_poke_ball_on_shiny": true,
+  "capture_ball_override": "best",
+  "auto_capture_test_initially_armed": false,
+  "auto_capture_test_pending": false,
+  "last_auto_capture_test": null,
+  "horde_auto_attack_test_initially_armed": false,
+  "horde_auto_attack_test_pending": false,
+  "last_horde_auto_attack_test": null,
+  "location_name": "Route 102",
+  "zone_id": 24,
+  "parent_map": 206,
+  "matrix_id": 2,
+  "method": "horde",
+  "movement_axis": "stationary",
+  "method_name": "Horde",
+  "movement_axis_name": "Stationary",
+  "host": "192.168.1.21",
+  "started": "2026-09-25T13:54:10+01:00",
+  "finished": "2026-09-25T13:57:23+01:00",
+  "elapsed_seconds": 192.476,
+  "encounters_completed": 6,
+  "battles_completed": 6,
+  "pokemon_seen_session": 30,
+  "encounter_timing": {
+    "field_to_encounter_last": 12.384800700005144,
+    "field_to_encounter_average": 12.320466733333888,
+    "field_to_encounter_samples": 6,
+    "battle_to_field_last": 17.629441900004167,
+    "battle_to_field_average": 17.761653020000086,
+    "battle_to_field_samples": 5,
+    "measured_cycle_last": 30.13232319999952,
+    "measured_cycle_average": 30.069252959999723,
+    "measured_cycle_samples": 5
+  },
+  "horde_battles": 6,
+  "horde_trigger": "honey",
+  "horde_trigger_resolved": "honey",
+  "honey_inventory": {
+    "index": 0,
+    "item_id": 94,
+    "quantity": 1612,
+    "address": 147254384,
+    "items_active_count": 9,
+    "active_index": 0
+  },
+  "last_opponent_set": {
+    "battle_index": 6,
+    "classification": "HORDE",
+    "size": 5,
+    "slots": [
+      {
+        "slot": 0,
+        "species": 280,
+        "species_name": "Ralts",
+        "pid": "0xC847DFA0",
+        "shiny_xor": 54334,
+        "is_shiny": false
+      },
+      {
+        "slot": 1,
+        "species": 280,
+        "species_name": "Ralts",
+        "pid": "0x220C4283",
+        "shiny_xor": 41814,
+        "is_shiny": false
+      },
+      {
+        "slot": 2,
+        "species": 280,
+        "species_name": "Ralts",
+        "pid": "0x75B24233",
+        "shiny_xor": 62552,
+        "is_shiny": false
+      },
+      {
+        "slot": 3,
+        "species": 280,
+        "species_name": "Ralts",
+        "pid": "0x38197BDE",
+        "shiny_xor": 32798,
+        "is_shiny": false
+      },
+      {
+        "slot": 4,
+        "species": 280,
+        "species_name": "Ralts",
+        "pid": "0x71AF81CE",
+        "shiny_xor": 13240,
+        "is_shiny": false
+      }
+    ]
+  },
+  "global_trigger_cycles": 0,
+  "species_counts": {
+    "263": 20,
+    "273": 5,
+    "280": 5
+  },
+  "run_attempt_counts": {
+    "25": 3,
+    "24": 1,
+    "unknown": 1
+  },
+  "touch_timeout_recoveries": 0,
+  "last_encounter": {
+    "attempt": 6,
+    "battle_index": 6,
+    "horde": true,
+    "horde_size": 5,
+    "horde_slot": 0,
+    "game": "Omega Ruby",
+    "species": 280,
+    "species_name": "Ralts",
+    "pokemon_pid": "0xC847DFA0",
+    "pid": "0xC847DFA0",
+    "ec": "0xEA8FC612",
+    "tid": 12791,
+    "sid": 61998,
+    "shiny_xor": 54334,
+    "is_shiny": false,
+    "ivs": {
+      "hp": 21,
+      "attack": 23,
+      "defense": 12,
+      "speed": 31,
+      "sp_attack": 17,
+      "sp_defense": 13
+    },
+    "nature": "Calm",
+    "ability_id": 28,
+    "ability": "Synchronize",
+    "gender": "\u2642",
+    "hidden_power": "Dragon",
+    "hidden_power_power": 60,
+    "target_mode": false,
+    "target_match": false,
+    "target_checks": {},
+    "hunt_type": "Wild",
+    "method": "horde",
+    "movement_axis": "stationary",
+    "method_name": "Horde",
+    "environment": "Tall grass",
+    "location_name": "Route 102",
+    "zone_id": 24,
+    "parent_map": 206,
+    "matrix_id": 2,
+    "selected_target_species": null,
+    "selected_target_name": null,
+    "selected_target_location": null,
+    "selected_species_match": null,
+    "movement_axis_name": "Stationary",
+    "encounter_kind": "Horde",
+    "natural_horde": false,
+    "trigger_method": "Horde (honey)",
+    "horde_trigger": "honey",
+    "horde_species": [
+      "Ralts",
+      "Ralts",
+      "Ralts",
+      "Ralts",
+      "Ralts"
+    ],
+    "result": "AUTHORITY_PASS_ESCAPE_PENDING"
+  },
+  "last_shiny_auto_throw": null,
+  "fishing_chain": null,
+  "events": [
+    {
+      "time": "2026-09-25T13:57:23+01:00",
+      "type": "IntegrationHold",
+      "error": "causal Run failed: battle stayed active through 48 bounded Run taps",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\roger\\Desktop\\Pokebot3DS-CFW_v0p43EJ_HF105\\qt_ui\\wild_worker.py\", line 5341, in run\n    raise backend.IntegrationHold(\n    ...<2 lines>...\n    )\npokebot_wild_walk_v0p23_script.IntegrationHold: causal Run failed: battle stayed active through 48 bounded Run taps\n"
+    }
+  ]
+}
