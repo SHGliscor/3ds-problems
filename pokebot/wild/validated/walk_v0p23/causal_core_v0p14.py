@@ -916,6 +916,16 @@ SETTLED_PROFILE_READ_SIZE = 0xD8
 SETTLED_PROFILE_POLL_SEC = 0.04
 SETTLED_PROFILE_TIMEOUT_SEC = 20.0
 
+# Horde command-menu settling:
+# state_3C=2 is already the proven PK6-ready battle boundary. The previous
+# exact pointer/profile gate was too strict for Omega Ruby and could remain
+# false even though the battle was valid. For Run authority, require the
+# state=2 boundary to remain stable, then allow the game's ability/status
+# presentation window to finish before the first touch.
+RUN_MENU_CONFIRM_SAMPLES = 3
+RUN_MENU_CONFIRM_POLL_SEC = 0.08
+RUN_MENU_PRESENTATION_SETTLE_SEC = 6.0
+
 DIAG_VIEW_SIZE = 0x400
 DIAG_OUTER_SIZE = 0x400
 EARLY_EXIT_CHECK_SEC = 1.20
@@ -1282,32 +1292,56 @@ def wait_field_stable(br: Bridge, timeout: float) -> dict:
 def causal_run_until_field(br: Bridge) -> dict:
     attempts = []
 
-    # HF-RALTS: Trace/Synchronize-style entry-ability messages can keep the
-    # battle in ACTIVE RAM while the command menu is not yet touch-ready.
-    # Do not fire the fixed Run touch during that presentation window.
-    # The exact settled profile is already the validated command-menu authority
-    # used by the diagnostic/probe path; require it before the first Run touch.
-    menu_ready = wait_for_exact_settled_profile(
-        br, timeout=SETTLED_PROFILE_TIMEOUT_SEC
-    )
-    if not menu_ready.get("matched"):
-        if menu_ready.get("status") == "BATTLE_ENDED_BEFORE_PROFILE":
+    # HF-RALTS / OR: do not use the legacy exact pointer-profile match as
+    # the Run gate. That profile was derived from an earlier hardware probe
+    # and is not stable enough across ORAS battle presentation states.
+    #
+    # We already have the validated state=2 boundary from the authoritative
+    # PK6 read. Require it to be continuously present for three samples, then
+    # give the battle's five-entry ability/status presentation window time to
+    # finish before the first Run touch. The actual Run acceptance is still
+    # proven only by BATTLE_ACTIVE -> non-active -> stable field.
+    deadline = time.monotonic() + SETTLED_PROFILE_TIMEOUT_SEC
+    menu_samples = []
+    consecutive = 0
+
+    while time.monotonic() < deadline:
+        s = read_menu_profile(br)
+        menu_samples.append(s)
+
+        if s["battle"] != hx(BATTLE_ACTIVE):
             field = wait_field_stable(br, FIELD_RETURN_TIMEOUT_SEC)
             return {
                 "success": bool(field.get("stable")),
                 "attempts": attempts,
                 "field": field,
-                "note": "battle ended while waiting for settled Run menu",
+                "note": "battle ended while waiting for stable state=2 Run boundary",
+                "menu_ready_samples": menu_samples,
             }
+
+        if s.get("state_3C") == "0x00000002":
+            consecutive += 1
+            if consecutive >= RUN_MENU_CONFIRM_SAMPLES:
+                break
+        else:
+            consecutive = 0
+
+        time.sleep(RUN_MENU_CONFIRM_POLL_SEC)
+    else:
         return {
             "success": False,
             "attempts": attempts,
             "reason": (
-                "settled Run command menu did not become ready before "
+                "stable state=2 Run boundary did not become ready before "
                 f"{SETTLED_PROFILE_TIMEOUT_SEC:.1f}s"
             ),
-            "menu_ready": menu_ready,
+            "menu_ready_samples": menu_samples,
         }
+
+    # Ralts/Trace hordes can present one ability message per opponent. The
+    # battle RAM can remain ACTIVE/state=2 throughout that presentation, so
+    # state=2 alone is not a sufficient touch timing signal.
+    time.sleep(RUN_MENU_PRESENTATION_SETTLE_SEC)
 
     for attempt in range(1, MAX_RUN_TAPS_PER_ENCOUNTER + 1):
         before = br.u32(BATTLE_ADDR)
@@ -1400,7 +1434,8 @@ def main():
             "authority": "causal native Run outcome: battle ACTIVE must leave ACTIVE and settle INACTIVE",
             "max_run_taps_per_encounter": MAX_RUN_TAPS_PER_ENCOUNTER,
             "post_touch_observe_seconds": POST_TAP_OBSERVE_SEC,
-            "extra_readiness_delay_seconds": 0,
+            "extra_readiness_delay_seconds": RUN_MENU_PRESENTATION_SETTLE_SEC,
+            "run_menu_gate": "stable state_3C=2 for 3 samples + 6.0s presentation settle",
         },
         "movement": {
             "profile": "proven one-tile alternating Up/Down",
