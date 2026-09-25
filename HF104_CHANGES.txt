@@ -1,0 +1,11 @@
+HF104 - CURRENT HUNT COLLAPSE TOGGLE
+===================================
+
+UI change:
+- Added a "Show details" toggle to the Current hunt panel on the Dashboard.
+- Checked: Current Hunt details are visible (default).
+- Unchecked: Current Hunt details are minimized while the panel header remains visible.
+- This is presentation-only and does not pause, stop, or otherwise affect the active hunt.
+
+Validation:
+- qt_ui/dashboard_page.py passes Python syntax compilation.

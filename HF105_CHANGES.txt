@@ -1,0 +1,13 @@
+HF105 — Wild Run false Safety Hold race fix
+
+- Fixed a race in the Wild Horde Run handoff that could falsely Safety HOLD after
+  the normal 24-tap causal Run ceiling.
+- The wrapper now re-reads BATTLE_ADDR after the core reports the 24-tap ceiling.
+- If battle RAM has already transitioned to INACTIVE during that handoff, the bot
+  now runs the existing stable-field authority check and completes the escape
+  instead of returning the stale failed 24-tap result.
+- The final accepted Run attempt is preserved in encounter metadata when this late
+  transition occurs.
+- Genuine ACTIVE battle state still enters the existing bounded recovery extension;
+  bridge read errors and unexpected states remain Safety HOLD conditions.
+- Added an offline regression contract for the late-inactive post-ceiling race.

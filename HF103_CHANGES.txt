@@ -1,0 +1,10 @@
+HF103 — Honey false Safety Hold fix
+
+- Fixed Honey preflight falsely holding when the save-backed Items pocket contains
+  more than one populated Honey row.
+- Honey is now accepted when at least one live Honey row exists, while the
+  first-active-slot requirement remains enforced for the fast Horde path.
+- Live DllBag controller authority is still required before Honey-use input.
+- Honey quantity tracking now uses total live Honey stock, preserving the
+  exact-one-consumption safety check.
+- Added an offline regression test reproducing the reported 3-Honey false hold.
