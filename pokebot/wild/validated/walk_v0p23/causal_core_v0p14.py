@@ -1282,6 +1282,33 @@ def wait_field_stable(br: Bridge, timeout: float) -> dict:
 def causal_run_until_field(br: Bridge) -> dict:
     attempts = []
 
+    # HF-RALTS: Trace/Synchronize-style entry-ability messages can keep the
+    # battle in ACTIVE RAM while the command menu is not yet touch-ready.
+    # Do not fire the fixed Run touch during that presentation window.
+    # The exact settled profile is already the validated command-menu authority
+    # used by the diagnostic/probe path; require it before the first Run touch.
+    menu_ready = wait_for_exact_settled_profile(
+        br, timeout=SETTLED_PROFILE_TIMEOUT_SEC
+    )
+    if not menu_ready.get("matched"):
+        if menu_ready.get("status") == "BATTLE_ENDED_BEFORE_PROFILE":
+            field = wait_field_stable(br, FIELD_RETURN_TIMEOUT_SEC)
+            return {
+                "success": bool(field.get("stable")),
+                "attempts": attempts,
+                "field": field,
+                "note": "battle ended while waiting for settled Run menu",
+            }
+        return {
+            "success": False,
+            "attempts": attempts,
+            "reason": (
+                "settled Run command menu did not become ready before "
+                f"{SETTLED_PROFILE_TIMEOUT_SEC:.1f}s"
+            ),
+            "menu_ready": menu_ready,
+        }
+
     for attempt in range(1, MAX_RUN_TAPS_PER_ENCOUNTER + 1):
         before = br.u32(BATTLE_ADDR)
         if before != BATTLE_ACTIVE:
