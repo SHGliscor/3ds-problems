@@ -1,0 +1,25 @@
+2026-09-25T14:21:30.318+01:00 WILD Horde — loading validated backend
+2026-09-25T14:21:30.579+01:00 ORAS GAME PROFILE LOCKED: Omega Ruby 0x000400000011C400 sango-1 identity_mode=omega_ruby_to_frozen_as_title_gate
+2026-09-25T14:21:30.589+01:00 SHINY AUTO-CATCH ARMED: Omega Ruby Horde mode; exactly one shiny => protect its RAM slot, KO the other four, then capture; 2+ shinies => unconditional Safety HOLD with no attacks or Balls. The hardware-proven Horde reducer waits for five-alive readiness and exact owner+0x93 COMMAND=1, then uses the per-battle COMMAND/MOVE fingerprint, exact target masks, one-step KO proof and protected-survivor capture path. The shiny coordinate is never touched.
+2026-09-25T14:21:30.607+01:00 SHINY CHARM RAM: PRESENT (item 632 hit(s): [{'offset': 0, 'address': '0x08C6F2B0', 'item_id': 632, 'item_id_hex': '0x0278', 'count': 1}])
+2026-09-25T14:21:30.925+01:00 PARTY LIVE ORDER D25: source=RUNTIME_POINTER_CHAIN species=[120, 252, 283, 265, 261, 263]
+2026-09-25T14:21:30.926+01:00 POKERUS BASELINE: no active contagious party Pokérus
+2026-09-25T14:21:31.172+01:00 AUTO SWEET SCENT SETUP PASS D25: user=Surskit visible_slot=3 move_slot=2 PP=20 field_xy=(119, 119) party_source=RUNTIME_POINTER_CHAIN lead=Staryu lead_moves=[55, 145, 129, 61] lead_pp=[16, 30, 20, 15]
+2026-09-25T14:21:31.173+01:00 HORDE TRIGGER AUTO: selected Sweet Scent
+2026-09-25T14:21:31.174+01:00 HORDE TRIGGER LOCKED: requested=auto resolved=sweet_scent
+2026-09-25T14:21:31.180+01:00 START Omega Ruby Route 102 zone=24 grid=[181, 130] method=Horde axis=stationary
+2026-09-25T14:21:31.305+01:00 AUTO SWEET SCENT D25 TOUCH ROUTE: green Poké Ball (60,230) -> silver visible-slot-3 field icon (119, 119) -> Sweet Scent (170,104)
+2026-09-25T14:21:31.593+01:00 AUTO SWEET SCENT TOUCH: GREEN_POKEBALL_PARTY xy=(60,230) touch_state=0x01F542FF completed=True
+2026-09-25T14:21:33.648+01:00 AUTO SWEET SCENT TOUCH: SLOT3_SILVER_FIELD_ACTION xy=(119,119) touch_state=0x017EE5F2 completed=True
+2026-09-25T14:21:34.917+01:00 AUTO SWEET SCENT TOUCH: SWEET_SCENT xy=(170,104) touch_state=0x016EE87F completed=True
+2026-09-25T14:21:41.926+01:00 AUTO SWEET SCENT: battle active — Horde boundary acquired
+2026-09-25T14:21:45.308+01:00 HORDE LEAD RAM REFRESH: Staryu moves=[55, 145, 129, 61] PP=[16, 30, 20, 15] source=RUNTIME_POINTER_CHAIN
+2026-09-25T14:21:45.310+01:00 PARTY LIVE ORDER: battle pointer table -> species [120, 252, 283, 261, 263, 265] order [0, 1, 2, 4, 5, 3]
+2026-09-25T14:21:45.371+01:00 #1 HORDE x5 [AUTO SWEET SCENT]: Zigzagoon, Zigzagoon, Zigzagoon, Zigzagoon, Zigzagoon
+2026-09-25T14:21:45.371+01:00   slot0 Zigzagoon PID 0x7C559892 XOR 10014 shiny=False
+2026-09-25T14:21:45.372+01:00   slot1 Zigzagoon PID 0xD88628F1 XOR 13230 shiny=False
+2026-09-25T14:21:45.373+01:00   slot2 Zigzagoon PID 0xFC66BABE XOR 34049 shiny=False
+2026-09-25T14:21:45.374+01:00   slot3 Zigzagoon PID 0x9467DA36 XOR 36232 shiny=False
+2026-09-25T14:21:45.374+01:00   slot4 Zigzagoon PID 0xBCE25594 XOR 10927 shiny=False
+2026-09-25T14:21:45.470+01:00 HORDE AUTHORITY COMMITTED: +5 Pokémon seen before escape
+2026-09-25T14:22:05.540+01:00 SAFETY_HOLD: IntegrationHold: causal Run failed: settled Run command menu did not become ready before 20.0s
